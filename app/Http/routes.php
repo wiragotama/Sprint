@@ -27,8 +27,34 @@ Route::bind('status', function($value, $route) {
 	return App\Status::whereSlug($value)->first();
 });
 
+// Guest 
 Route::get('/', 'guestController@index');
 Route::get('register', 'guestController@register');
 Route::post('register', 'guestController@create');
+Route::get('login', 'guestController@showLogin');
+Route::post('login', 'guestController@login');
+Route::resource('files','guestController');
 Route::resource('users', 'guestController');
-Route::get('login', 'guestController@login');
+
+// Admin
+Route::get('adminDashboard', 'adminController@index');
+Route::post('adminDashboard', 'adminController@changePassword');
+Route::get('adminUsers', 'adminController@usersView');
+Route::post('createUser', 'adminController@createUser');
+Route::post('editUser', 'adminController@editUser');
+Route::post('updateUser', 'adminController@updateUser');
+Route::get('adminFiles', 'adminController@showFiles');
+Route::get('adminLogout', 'adminController@logout');
+Route::post('deleteUser', 'adminController@deleteUser');
+Route::resource('users', 'adminController');
+Route::resource('files', 'adminController');
+
+// Customer
+Route::get('customerHome', 'customerController@home');
+Route::get('customerProfile', 'customerController@showUser');
+Route::get('customerLogout', 'customerController@logout');
+Route::resource('users', 'customerController');
+Route::resource('files', 'customerController');
+Route::resource('status', 'customerController');
+
+// Agent

@@ -1,7 +1,7 @@
 @extends('guest.guestLayout')
 @section('content')
     <div class="warningMessage">
-        @if ($message!=null)
+        @if ($message!='')
             {{$message}}
         @endif
     </div>
@@ -9,7 +9,7 @@
     <div class="container">
         <div class="loginForm">
             <!-- ada validasi javascript disini -->
-            <form id="loginForm" onsubmit="#" action="/register" method="POST">
+            <form id="loginForm" onsubmit="#" action="/login" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <li>
                     <input id="username" name="username" type="text" class="text" placeholder="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}"> </input>
