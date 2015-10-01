@@ -32,7 +32,6 @@
     <![endif]-->
 
 </head>
-
 <body id="page-top" class="index" style="background-color:black">
 
     <!-- Navigation -->
@@ -56,16 +55,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="userHome.html">Home</a>
+                        <a class="page-scroll" href="./customerHome">Home</a>
                     </li>
                     <li>
-                        <a href="userProfile.html">Edit Profile</a>
+                        <a href="./customerProfile">Edit Profile</a>
                     </li>
                     <li>
-                        <a href="userUpload.html">Upload</a>
+                        <a href="./customerUpload">Upload</a>
                     </li>
                     <li>
-                        <a href="#">Log Out</a>
+                        <a href="./customerLogout">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +73,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- register Section -->
+    <!-- Upload Section -->
     <section id="register" class="bg-black">
         <div class="container">
             <div class="row">
@@ -83,68 +82,62 @@
                 </div>
             </div>
             <br>
-            
+        </div>
+        
+        <div class="container">
+            @if ($message!=null)
+                <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900">
+                    <h5 class="section-heading" style="color:black"> {{$message}} </h5>
+                </div>
+            @endif
+        </div>
+        <br>
+
+        {!! Form::open(array('url'=>'customerUpload','files'=>true)) !!}
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" novalidate>
-                        <div class="row" style="color:white">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File input :</label>
-                                    <input type="file" id="exampleInputFile">
-                                    <p class="help-block" style="color:white">Please upload file here.</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sel1">Type :</label>
-                                    <select class="form-control" id="tipe" name="tipe">
-                                        <option>Dokumen</option>
-                                        <option>Poster</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sel1">Paper Size :</label>
-                                    <select class="form-control" id="paperSize" name="paperSize">
-                                        <option>A0</option>
-                                        <option>A1</option>
-                                        <option>A2</option>
-                                        <option>A3</option>
-                                        <option>A4</option>
-                                        <option>A5</option>
-                                    </select>
-                                </div>
+                    <div class="row" style="color:white">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input :</label>
+                                {!!Form::file('file','',array('id'=>'file','class'=>'')) !!}
+                                <p class="help-block" style="color:white">Please upload file here.</p>
                             </div>
-                            <div class="clearfix"></div>
-                            <br>
-                            <div class="col-lg-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-warning">Upload</button>
+                            <div class="form-group">
+                                <label for="sel1">Type :</label>
+                                <select class="form-control" id="printType" name="printType">
+                                    <option>Dokumen</option>
+                                    <option>Poster</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Paper Size :</label>
+                                <select class="form-control" id="paperSize" name="paperSize">
+                                    <option>A0</option>
+                                    <option>A1</option>
+                                    <option>A2</option>
+                                    <option>A3</option>
+                                    <option>A4</option>
+                                    <option>A5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Delivery Address :</label>
+                                <br>
+                                <input class="form-control" id="address" name="address" type="text" placeholder="{{$user->address}}" value="{{$user->address}}">  </input>
                             </div>
                         </div>
-                    </form>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-warning">Upload</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {!!Form::close() !!}
     </section>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/cbpAnimatedHeader.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/agency.js"></script>
-
 </body>
-
 </html>

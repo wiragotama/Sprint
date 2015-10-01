@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Users;
 use App\Files;
 use Input;
@@ -67,18 +69,14 @@ class customerController extends Controller
         }
     }
 
-    public function uploadFile()
-    {
-        $message = '';
-        return view('customer.uploadFile', compact('message'));
-    }
-
     public function cancelOrder()
     {
         $file = Files::where('id', Input::get('id'))->first();
         $file->delete();
         $message = "order has successfully deleted";
         $files = Files::orderBy('updated_at','DESC')->get();
+        File::delete($file->filePath);
+
         return view('customer.home', compact('message', 'files'));
     }
 
@@ -86,6 +84,39 @@ class customerController extends Controller
     {
         Session:flush();
         return redirect('/');
+    }
+
+    public function showUploader()
+    {
+        $message = '';
+        $user = Users::where('username', Session::get('username'))->first();
+        return view('customer.userUpload', compact('message', 'user'));
+    }
+
+    public function uploadFile()
+    {
+        $file = Input::file('file');
+        $filename = $file->getClientOriginalName();
+
+        Storage::disk('local')->put($file->getClientOriginalName(),  File::get($file));
+        $path = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()."/".$filename;
+
+        Files::create([
+            'filename' => $filename,
+            'filePath' => $path,
+            'uploaderName' => Session::get('username'),
+            'agentName' => 'agent',
+            'deliveryAddress' => Input::get('address'),
+            'printType' => Input::get('printType'),
+            'paperSize' => Input::get('paperSize'),
+            'numPages' => '10', //anggap aja masih dummy
+            'harga' => '10000', //anggap aja masih dummy
+            'status' => 'In Queue'
+        ]);
+
+        $message = 'file is successfully uploaded';
+        $user = Users::where('username', Session::get('username'))->first();
+        return view('customer.userUpload', compact('message', 'user'));
     }
 
     /**
