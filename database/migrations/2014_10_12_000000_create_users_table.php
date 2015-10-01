@@ -22,12 +22,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('loggedusers', function (Blueprint $table) {
-            $table->string('username')->unique();
-            $table->string('password', 60);
-            $table->timestamps();
-        });
-
         Schema::create('files', function(Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('filename',60); 
@@ -38,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('printType',8)->default('doc'); //doc atau poster
             $table->string('paperSize',3)->default('A4'); //{A4, A3, A0}
             $table->integer('numPages')->default(0);
+            $table->integer('harga');
             $table->string('status',10)->default('In Queue'); //{In Queue, Printed, Delivered}
             $table->timestamps();
         });
@@ -55,7 +50,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('loggedusers');
         Schema::drop('users');
         Schema::drop('files');
         Schema::drop('status');

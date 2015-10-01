@@ -23,13 +23,13 @@ class customerController extends Controller
     public function home()
     {
         $message = '';
-        $files = Files::where('uploaderName', Session::get('username'))->orderBy('status')->get();
+        $files = Files::where('uploaderName', Session::get('username'))->orderBy('updated_at')->get();
         return view('customer.home', compact('message', 'files'));
     }
 
     public function showUser()
     {
-        $user = Users::where('username', Session::get('username'))->get();
+        $user = Users::where('username', Session::get('username'))->first();
         $message = '';
         return view('customer.editProfile', compact('message','user'));
     }
@@ -49,22 +49,37 @@ class customerController extends Controller
         }
     }
 
-    public function updateUser()
+    public function updateProfile()
     {
         $user = Users::where('username', Input::get('username'))->firstOrFail();
 
-        if (Input::get('password')!='' && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
-            $user->password = Input::get('password');
+        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
+            $user->password = Input::get('newPassword');
             $user->address = Input::get('address');
             $user->email = Input::get('email');
             $user->save();
-            $message = 'edit user success';
-            return view('admin.editUser', compact('message', 'user'));
+            $message = 'profile successfully saved';
+            return view('customer.editProfile', compact('message', 'user'));
         }
         else {
             $message = 'field cannot be blank, email must be correct';
-            return view('admin.editUser', compact('message', 'user'));
+            return view('customer.editProfile', compact('message', 'user'));
         }
+    }
+
+    public function uploadFile()
+    {
+        $message = '';
+        return view('customer.uploadFile', compact('message'));
+    }
+
+    public function cancelOrder()
+    {
+        $file = Files::where('id', Input::get('id'))->first();
+        $file->delete();
+        $message = "order has successfully deleted";
+        $files = Files::orderBy('updated_at','DESC')->get();
+        return view('customer.home', compact('message', 'files'));
     }
 
     public function logout()

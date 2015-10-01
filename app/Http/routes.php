@@ -52,7 +52,10 @@ Route::resource('files', 'adminController');
 // Customer
 Route::get('customerHome', 'customerController@home');
 Route::get('customerProfile', 'customerController@showUser');
+Route::post('customerProfile', 'customerController@updateProfile');
+Route::get('customerUpload', 'customerController@uploadFile');
 Route::get('customerLogout', 'customerController@logout');
+Route::post('cancelOrder', 'customerController@cancelOrder');
 Route::resource('users', 'customerController');
 Route::resource('files', 'customerController');
 Route::resource('status', 'customerController');

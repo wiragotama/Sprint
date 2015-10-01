@@ -21,17 +21,23 @@ class guestController extends Controller
      */
     public function index()
     {
-        return view('guest.home');
+        $message = '';
+        $message2 = '';
+        return view('guest.home', compact('message', 'message2'));
     }
     
     public function register()
     {
-        return view('guest.register')->with('message','');
+        $message = '';
+        $message2 = '';
+        return view('guest.home', compact('message', 'message2'));
     }
 
     public function showLogin()
     {
-        return view('guest.login')->with('message','');
+        $message = '';
+        $message2 = '';
+        return view('guest.home', compact('message', 'message2'));
     }
 
     public function login()
@@ -57,13 +63,15 @@ class guestController extends Controller
             else 
             {
                 $message = 'Login failed';
-                return view('guest.login')->with('message','');
+                $message2 = '';
+                return view('guest.home', compact('message', 'message2'));
             }
         }
         else
         {
             $message = 'Login failed';
-            return view('guest.login')->with('message','');
+            $message2 = '';
+            return view('guest.home', compact('message', 'message2'));
         }
     }
 
@@ -77,17 +85,21 @@ class guestController extends Controller
         $user = Users::where('username', Input::get('username'))->get();
         if (count($user)) //user already exist
         {
-            $message = 'user is already exist';
-            return view('guest.register')->with('message', $message);
+            $message = '';
+            $message2 = 'user is already exist';
+            return view('guest.home', compact('message', 'message2'));
         }
         else if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='') 
         {
-            $message = 'all fields must be filled!';
-            return view('guest.register')->with('message',$message);
+            $message = '';
+            $message2 = 'all fields must be filled!';
+            return view('guest.home', compact('message', 'message2'));
         }
         else {
             if (!filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
-                return view('guest.login')->with('message','invalid email address');
+                $message = '';
+                $message2 = 'invalid email address';
+                return view('guest.home', compact('message', 'message2'));
             }
             else {
                 Users::create([
@@ -97,8 +109,9 @@ class guestController extends Controller
                     'address' => Input::get('address'),
                     'role' => 'customer'
                 ]);
-                $message = 'register success, you may login';
-                return view('guest.login')->with('message', $message);
+                $message = '';
+                $message2 = 'register success, you may login';
+                return view('guest.home', compact('message', 'message2'));
             }
         }
     }

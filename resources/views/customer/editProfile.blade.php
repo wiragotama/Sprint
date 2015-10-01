@@ -1,40 +1,64 @@
 @extends('customer.customerLayout')
 @section('content')
-	 <h2>Edit User</h2>
-    
-    <div class="warningMessage">
-        @if ($message!=null)
-            {{$message}}
-        @endif
-    </div>
 
-    <div class="container">
-        <div class="registerForm">
-            <!-- ada validasi javascript disini -->
-            <form id="registerForm" onsubmit="#" action="/updateUser" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <li>
-                    Username: {{$user->username}}
-                    <input type="hidden" name="username" value="{{$user->username}}"> 
-                </li>
-                <li>
-                    Email:
-                    <input id="email" name="email" type="text" placeholder="{{$user->email}}" value="{{$user->email}}"> </input>
-                </li>
-                <li>
-                    Password:
-                    <input id="password" name="password" type="password" placeholder="{{$user->password}} " value="{{$user->password}}"> </input>
-                </li>
-                <li>
-                    Address:
-                    <input id="address" name="address" type="text" placeholder="{{$user->address}}" value="{{$user->address}}">  </input>
-                </li>
-                <div class="p-container">
-                        <input type="submit" onclick="#" value="SUBMIT" >
-                        <div class="clear"> </div>
+    <!-- edit profile Section -->
+    <section id="register" class="bg-black">
+        <div class="container">
+            @if ($message!=null)
+                <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900">
+                    <h5 class="section-heading" style="color:black"> {{$message}} </h5>
                 </div>
-            </form>
+            @endif
         </div>
-    </div>
-    
+        <br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading" style="color:white">Edit Profile</h2>
+                </div>
+            </div>
+            <br>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="editForm" onsubmit="#" action="/customerProfile" method="POST">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" id="username" name="username" value="{{ $user->username }}">
+                                <div class="form-group">
+                                    <h5 class="section-heading" style="color:white">Old Password</h5>
+                                    <input type="password" class="form-control" placeholder="Old Password" id="oldPassword" name="oldPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your old password.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <h5 class="section-heading" style="color:white">New Password</h5>
+                                    <input type="password" class="form-control" placeholder="Password" id="newPassword" name="newPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your new password.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <h5 class="section-heading" style="color:white">Address</h5>
+                                    <input type="text" class="form-control" placeholder="Address" id="address" name="address" value="{{$user->address}}" required data-validation-required-message="Please enter your address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <h5 class="section-heading" style="color:white">Email</h5>
+                                    <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="{{$user->email}}" required data-validation-required-message="Please enter your email.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-warning">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>    
 @endsection
