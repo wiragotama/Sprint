@@ -15,10 +15,16 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password', 60);
             $table->string('address',60);
             $table->string('role',20)->default('customer'); //admin, agent, customer
+            $table->timestamps();
+        });
+
+        Schema::create('loggedusers', function (Blueprint $table) {
+            $table->string('username')->unique();
+            $table->string('password', 60);
             $table->timestamps();
         });
 
@@ -49,6 +55,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::drop('loggedusers');
         Schema::drop('users');
         Schema::drop('files');
         Schema::drop('status');
