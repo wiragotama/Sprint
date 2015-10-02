@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
 use App\Users;
 use App\Files;
 use Input;
@@ -15,7 +16,7 @@ use Redirect;
 use Session;
 
 
-class customerController extends Controller
+class agentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,30 +26,8 @@ class customerController extends Controller
     public function home()
     {
         $message = '';
-        $files = Files::where('uploaderName', Session::get('username'))->orderBy('updated_at', 'DESC')->get();
-        return view('customer.home', compact('message', 'files'));
-    }
-
-    public function showUser()
-    {
         $user = Users::where('username', Session::get('username'))->first();
-        $message = '';
-        return view('customer.editProfile', compact('message','user'));
-    }
-
-    public function editUser()
-    {
-        $user = Users::where('username', Input::get('username'))->firstOrFail();
-        if ($user)
-        {
-            $message = '';
-            return view('customer.editProfile', compact('message', 'user'));
-        }
-        else 
-        {
-            $message = 'databse error';
-            return view('customer.editProfile', compact('message', 'user'));
-        }
+        return view('agent.home', compact('message', 'user'));
     }
 
     public function updateProfile()
@@ -61,63 +40,53 @@ class customerController extends Controller
             $user->email = Input::get('email');
             $user->save();
             $message = 'profile successfully saved';
-            return view('customer.editProfile', compact('message', 'user'));
+            return view('agent.home', compact('message', 'user'));
         }
         else {
             $message = 'field cannot be blank, email must be correct';
-            return view('customer.editProfile', compact('message', 'user'));
+            return view('agent.home', compact('message', 'user'));
         }
     }
 
-    public function cancelOrder()
+    public function updateQueue()
     {
         $file = Files::where('id', Input::get('id'))->first();
-        $file->delete();
-        $message = "order has successfully deleted";
+        $file->status = 'Printed';
+        $file->save();
+        $message = "status has successfully updated - new printed file available";
         $files = Files::orderBy('updated_at','DESC')->get();
-        File::delete($file->filePath);
 
-        return view('customer.home', compact('message', 'files'));
+        return view('agent.filesDetail', compact('message', 'files'));
+    }
+
+    public function updatePrinted()
+    {
+        $file = Files::where('id', Input::get('id'))->first();
+        $file->status = 'Delivered';
+        $file->save();
+        $message = "status has successfully updated - new printed file available";
+        $files = Files::orderBy('updated_at','DESC')->get();
+
+        return view('agent.filesDetail', compact('message', 'files'));
+    }
+
+    public function getFile()
+    {
+        $entry = Files::where('id',  $_GET['id'])->first();
+        return response()->download($entry->filePath);
+    }
+
+    public function showFiles()
+    {
+        $files = Files::where('agentName', Session::get('username'))->get();
+        $message = '';
+        return view ('agent.filesDetail', compact('message', 'files'));
     }
 
     public function logout()
     {
         Session:flush();
         return redirect('/');
-    }
-
-    public function showUploader()
-    {
-        $message = '';
-        $user = Users::where('username', Session::get('username'))->first();
-        return view('customer.userUpload', compact('message', 'user'));
-    }
-
-    public function uploadFile()
-    {
-        $file = Input::file('file');
-        $filename = $file->getClientOriginalName();
-
-        Storage::disk('local')->put($file->getClientOriginalName(),  File::get($file));
-        $path = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()."/".$filename;
-
-        Files::create([
-            'filename' => $filename,
-            'filePath' => $path,
-            'uploaderName' => Session::get('username'),
-            'agentName' => 'agent',
-            'deliveryAddress' => Input::get('address'),
-            'printType' => Input::get('printType'),
-            'paperSize' => Input::get('paperSize'),
-            'numPages' => '10', //anggap aja masih dummy
-            'harga' => '10000', //anggap aja masih dummy
-            'status' => 'In Queue',
-            'mime' => $file->getClientMimeType()
-        ]);
-
-        $message = 'file is successfully uploaded';
-        $user = Users::where('username', Session::get('username'))->first();
-        return view('customer.userUpload', compact('message', 'user'));
     }
 
     /**

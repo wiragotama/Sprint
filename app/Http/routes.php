@@ -62,3 +62,13 @@ Route::resource('files', 'customerController');
 Route::resource('status', 'customerController');
 
 // Agent
+Route::get('agentHome', 'agentController@home');
+Route::post('agentProfile', 'agentController@updateProfile');
+Route::get('agentFiles', 'agentController@showFiles');
+Route::get('agentLogout', 'agentController@logout');
+Route::post('updateQueue', 'agentController@updateQueue');
+Route::post('updatePrinted', 'agentController@updatePrinted');
+Route::get('getFile', 'agentController@getFile');
+Route::resource('users', 'agentController');
+Route::resource('files', 'agentController');
+Route::resource('status', 'agentController');

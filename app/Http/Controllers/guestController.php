@@ -57,7 +57,7 @@ class guestController extends Controller
                 }
                 else if ($user->role=='agent')
                 {
-                    echo ('not supported yet!');
+                    return redirect('agentHome');
                 }
             }
             else 

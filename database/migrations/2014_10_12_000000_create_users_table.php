@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
         Schema::create('files', function(Blueprint $table) {
             $table->increments('id')->unique();
             $table->string('filename',60); 
-            $table->string('filePath',60); //absolute filePath saat menyimpan file
+            $table->string('filePath'); //absolute filePath saat menyimpan file
             $table->string('uploaderName'); //customer
             $table->string('agentName'); //printing agent name
             $table->string('deliveryAddress')->default(' ');
@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->integer('numPages')->default(0);
             $table->integer('harga');
             $table->string('status',10)->default('In Queue'); //{In Queue, Printed, Delivered}
+            $table->string('mime');
             $table->timestamps();
         });
 
