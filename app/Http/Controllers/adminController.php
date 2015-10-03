@@ -21,7 +21,11 @@ class adminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard')->with('message','');
+    	$user = Users::where('username', Session::get('username'))->first();
+    	$listUsers = Users::all();
+    	$files = Files::all();
+    	$message = '';
+        return view('admin.adminDashboard',compact('message','user','listUsers','files'));
     }
 
     public function changePassword()
@@ -52,20 +56,22 @@ class adminController extends Controller
     public function createUser()
     {
         $user = Users::where('username', Input::get('username'))->get();
+        $listUsers = Users::all();
+    	$files = Files::all();
         if (count($user)==0) //user not exist
         {
             if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='') 
             {  
                 $message = 'all fields must be filled!';
-                $users = Users::all();
-                return view('admin.users', compact('message', 'users'));
+                $user = Users::where('username', Session::get('username'))->first();
+                return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
             }
             else 
             {
                 if (!filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
                     $message = 'invalid email address';
-                    $users = Users::all();
-                    return view('admin.users', compact('message', 'users'));
+                    $user = Users::where('username', Session::get('username'))->first();
+                    return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
                 }
                 else {
                     Users::create([
@@ -76,37 +82,28 @@ class adminController extends Controller
                         'role' => Input::get('role')
                     ]);
                     $message = 'user has successfully added';
-                    $users = Users::all();
-                    return view('admin.users', compact('message', 'users'));
+                    $user = Users::where('username', Session::get('username'))->first();
+                    return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
                 }
             }
         }
         else {
             $message = 'user is already exist';
-            $users = Users::all();
-            return view('admin.users', compact('message', 'users'));
+            $user = Users::where('username', Session::get('username'))->first();
+            return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
         }
     }
 
-    public function editUser()
+    public function showEditUser()
     {
-        $user = Users::where('username', Input::get('username'))->firstOrFail();
-        if ($user)
-        {
-            $message = '';
-            return view('admin.editUser', compact('message', 'user'));
-        }
-        else 
-        {
-            $message = 'databse error';
-            return view('admin.editUser', compact('message', 'user'));
-        }
+    	$user = Users::where('username', Input::get('username'))->first();
+    	$message = '';
+    	return view('admin.editUser', compact('message', 'user'));
     }
 
     public function updateUser()
     {
         $user = Users::where('username', Input::get('username'))->firstOrFail();
-
         if (Input::get('password')!='' && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
             $user->password = Input::get('password');
             $user->address = Input::get('address');
@@ -126,20 +123,35 @@ class adminController extends Controller
         $user = Users::where('username', Input::get('username'))->firstOrFail();
         $user->delete();
         $message = "user has succesfully deleted";
-        $users = Users::all();
-        return view('admin.users', compact('message', 'users'));
-    }
-
-    public function showFiles()
-    {
-        $files = Files::orderBy('status')->get();
-        return view('admin.files', compact('files'));
+        $listUsers = Users::all();
+        $files = Files::all();
+        return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
     }
 
     public function logout()
     {
         Session::flush();
         return redirect('/');
+    }
+
+    public function editAdminProfile()
+    {
+    	$user = Users::where('username', Input::get('username'))->first();
+    	$listUsers = Users::all();
+    	$files = Files::all();
+
+        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
+            $user->password = Input::get('newPassword');
+            $user->address = Input::get('address');
+            $user->email = Input::get('email');
+            $user->save();
+            $message = 'admin profile updated';
+            return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
+        }
+        else {
+            $message = 'field cannot be blank, email must be correct';
+            return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
+        }
     }
 
     /**

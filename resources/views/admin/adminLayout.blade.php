@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="col-md-7 copy">
-					<p class="link text-right"><span>&#169; SPRINT 2015 </span></p>
+					<p class="link text-right"><span>&copy; Sprint 2015 </span></p>
 				</div>
 			</div>
 		</div>

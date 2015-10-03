@@ -32,10 +32,10 @@
     <![endif]-->
 
 </head>
-<body id="page-top" class="index" style="background-color:black">
+<body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:black">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -74,11 +74,11 @@
     </nav>
 
     <!-- Upload Section -->
-    <section id="register" class="bg-black">
+    <section id="register" class="bg-light-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading" style="color:white">Upload</h2>
+                    <h2 class="section-heading" style="color:black">Upload</h2>
                 </div>
             </div>
             <br>
@@ -96,13 +96,13 @@
         {!! Form::open(array('url'=>'customerUpload','files'=>true)) !!}
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row" style="color:white">
+                    <div class="row" style="color:black">
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputFile">File input :</label>
                                 {!!Form::file('file','',array('id'=>'file','class'=>'')) !!}
-                                <p class="help-block" style="color:white">Please upload file here.</p>
+                                <p class="help-block" style="color:black">Please upload file here.</p>
                             </div>
                             <div class="form-group">
                                 <label for="sel1">Type :</label>
@@ -139,5 +139,50 @@
             </div>
         {!!Form::close() !!}
     </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">&copy; Sprint 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/agency.js"></script>
+
 </body>
 </html>
+
+

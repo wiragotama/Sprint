@@ -39,11 +39,10 @@ Route::resource('users', 'guestController');
 // Admin
 Route::get('adminDashboard', 'adminController@index');
 Route::post('adminDashboard', 'adminController@changePassword');
-Route::get('adminUsers', 'adminController@usersView');
 Route::post('createUser', 'adminController@createUser');
-Route::post('editUser', 'adminController@editUser');
+Route::post('showEditUser','adminController@showEditUser');
 Route::post('updateUser', 'adminController@updateUser');
-Route::get('adminFiles', 'adminController@showFiles');
+Route::post('editAdminProfile', 'adminController@editAdminProfile');
 Route::get('adminLogout', 'adminController@logout');
 Route::post('deleteUser', 'adminController@deleteUser');
 Route::resource('users', 'adminController');
