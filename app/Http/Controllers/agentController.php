@@ -32,13 +32,22 @@ class agentController extends Controller
 
     public function updateProfile()
     {
-        $user = Users::where('username', Input::get('username'))->firstOrFail();
+        $user = Users::where('username', Session::get('username'))->firstOrFail();
 
         if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
             $user->password = Input::get('newPassword');
             $user->address = Input::get('address');
             $user->email = Input::get('email');
+            $user->handphone = Input::get('handphone');
             $user->save();
+
+            $files = Files::where('agentName', Session::get('username'))->get();
+            foreach ($files as $file) 
+            {
+                $file->agentContact = Input::get('handphone');
+                $file->save();
+            }
+
             $message = 'profile successfully saved';
             return view('agent.home', compact('message', 'user'));
         }

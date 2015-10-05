@@ -53,13 +53,22 @@ class customerController extends Controller
 
     public function updateProfile()
     {
-        $user = Users::where('username', Input::get('username'))->firstOrFail();
+        $user = Users::where('username', Session::get('username'))->firstOrFail();
 
-        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
+        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && Input::get('handphone')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
             $user->password = Input::get('newPassword');
             $user->address = Input::get('address');
             $user->email = Input::get('email');
+            $user->handphone = Input::get('handphone');
             $user->save();
+
+            $files = Files::where('uploaderName', Session::get('username'))->get();
+            foreach ($files as $file) 
+            {
+                $file->uploaderContact = Input::get('handphone');
+                $file->save();
+            }
+
             $message = 'profile successfully saved';
             return view('customer.editProfile', compact('message', 'user'));
         }
@@ -97,6 +106,8 @@ class customerController extends Controller
     {
         $file = Input::file('file');
         $filename = $file->getClientOriginalName();
+        $uploader = Users::where('username', Session::get('username'))->firstOrFail();
+        $agent = Users::where('username', 'agent')->firstOrFail();
 
         Storage::disk('local')->put($file->getClientOriginalName(),  File::get($file));
         $path = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix()."/".$filename;
@@ -105,7 +116,9 @@ class customerController extends Controller
             'filename' => $filename,
             'filePath' => $path,
             'uploaderName' => Session::get('username'),
+            'uploaderContact' => $uploader->handphone,
             'agentName' => 'agent',
+            'agentContact' => $agent->handphone,
             'deliveryAddress' => Input::get('address'),
             'printType' => Input::get('printType'),
             'paperSize' => Input::get('paperSize'),

@@ -60,7 +60,7 @@ class adminController extends Controller
     	$files = Files::all();
         if (count($user)==0) //user not exist
         {
-            if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='') 
+            if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='' || Input::get('handphone')=='') 
             {  
                 $message = 'all fields must be filled!';
                 $user = Users::where('username', Session::get('username'))->first();
@@ -79,6 +79,7 @@ class adminController extends Controller
                         'email' => Input::get('email'),
                         'password' => Input::get('password'),
                         'address' => Input::get('address'),
+                        'handphone' => Input::get('handphone'),
                         'role' => Input::get('role')
                     ]);
                     $message = 'user has successfully added';
@@ -104,11 +105,27 @@ class adminController extends Controller
     public function updateUser()
     {
         $user = Users::where('username', Input::get('username'))->firstOrFail();
-        if (Input::get('password')!='' && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
+        if (Input::get('password')!='' && Input::get('address')!='' && Input::get('email')!='' && Input::get('handphone')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
             $user->password = Input::get('password');
             $user->address = Input::get('address');
             $user->email = Input::get('email');
+            $user->handphone = Input::get('handphone');
             $user->save();
+
+            $files = Files::where('uploaderName', Input::get('username'))->get();
+            foreach ($files as $file) 
+            {
+                $file->uploaderContact = Input::get('handphone');
+                $file->save();
+            }
+
+            $files = Files::where('agentName', Input::get('username'))->get();
+            foreach ($files as $file) 
+            {
+                $file->agentContact = Input::get('handphone');
+                $file->save();
+            }
+
             $message = 'edit user success';
             return view('admin.editUser', compact('message', 'user'));
         }
@@ -136,14 +153,15 @@ class adminController extends Controller
 
     public function editAdminProfile()
     {
-    	$user = Users::where('username', Input::get('username'))->first();
+    	$user = Users::where('username', Session::get('username'))->first();
     	$listUsers = Users::all();
     	$files = Files::all();
 
-        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
+        if (Input::get('oldPassword')==$user->password && Input::get('address')!='' && Input::get('email')!='' && Input::get('handphone')!='' && filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL)) {
             $user->password = Input::get('newPassword');
             $user->address = Input::get('address');
             $user->email = Input::get('email');
+            $user->handphone = Input::get('handphone');
             $user->save();
             $message = 'admin profile updated';
             return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));

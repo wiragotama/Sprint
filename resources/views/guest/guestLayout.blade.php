@@ -148,11 +148,11 @@
                         	<div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input id="username" name="username" type="text" class="form-control" placeholder="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" required data-validation-required-message="Please enter your name."> </input>
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" required data-validation-required-message="Please enter your name."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" name="password" type="password" class="form-control" placeholder="PASSWORD" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}" required data-validation-required-message="Please enter your password."> </input>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}" required data-validation-required-message="Please enter your password."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -192,19 +192,23 @@
                         	<div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input id="username" name="username" type="text" class="form-control" placeholder="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" required data-validation-required-message="Please enter your username."> </input>
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" required data-validation-required-message="Please enter your username."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                               		<input id="password" name="password" type="password" class="form-control" placeholder="PASSWORD" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}" required data-validation-required-message="Please enter your password."> </input>
+                               		<input id="password" name="password" type="password" class="form-control" placeholder="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}" required data-validation-required-message="Please enter your password."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input id="email" name="email" type="text" class="form-control" placeholder="E-MAIL" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-MAIL';}" required data-validation-required-message="Please enter your email."> </input>
+                                    <input id="email" name="email" type="text" class="form-control" placeholder="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-MAIL';}" required data-validation-required-message="Please enter your email."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input id="address" name="address" type="text" class="form-control" placeholder="ADDRESS" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'ADDRESS';}" required data-validation-required-message="Please enter your address."> </input>
+                                    <input id="address" name="address" type="text" class="form-control" placeholder="Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'ADDRESS';}" required data-validation-required-message="Please enter your address."> </input>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input id="handphone" name="handphone" type="text" class="form-control" placeholder="Handphone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'HANDPHONE';}" required data-validation-required-message="Please enter your handphone."> </input>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

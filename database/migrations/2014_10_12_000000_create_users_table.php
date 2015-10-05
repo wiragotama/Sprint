@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password', 60);
             $table->string('address',60);
+            $table->string('handphone',15);
             $table->string('role',20)->default('customer'); //admin, agent, customer
             $table->timestamps();
         });
@@ -26,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->increments('id')->unique();
             $table->string('filename',60); 
             $table->string('filePath'); //absolute filePath saat menyimpan file
+            $table->string('uploaderContact');
+            $table->string('agentContact');
             $table->string('uploaderName'); //customer
             $table->string('agentName'); //printing agent name
             $table->string('deliveryAddress')->default(' ');

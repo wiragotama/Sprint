@@ -89,7 +89,7 @@ class guestController extends Controller
             $message2 = 'user is already exist';
             return view('guest.home', compact('message', 'message2'));
         }
-        else if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='') 
+        else if (Input::get('username')=='' || Input::get('email')=='' || Input::get('password')=='' || Input::get('address')=='' || Input::get('handphone')=='') 
         {
             $message = '';
             $message2 = 'all fields must be filled!';
@@ -102,11 +102,13 @@ class guestController extends Controller
                 return view('guest.home', compact('message', 'message2'));
             }
             else {
+                //echo (Input::get('handphone'));
                 Users::create([
                     'username' => Input::get('username'),
                     'email' => Input::get('email'),
                     'password' => Input::get('password'),
                     'address' => Input::get('address'),
+                    'handphone' => Input::get('handphone'),
                     'role' => 'customer'
                 ]);
                 $message = '';

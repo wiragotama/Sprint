@@ -22,30 +22,35 @@
             
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="editForm" onsubmit="#" action="/customerProfile" method="POST">
+                    <form id="editForm" onsubmit="#" action="/customerProfile" method="POST" nonvalidate>
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" id="username" name="username" value="{{ $user->username }}">
                                 <div class="form-group">
-                                    <h5 class="section-heading" style="color:black">Old Password</h5>
+                                    <label class="section-heading" style="color:black">Old Password</label>
                                     <input type="password" class="form-control" placeholder="Old Password" id="oldPassword" name="oldPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your old password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="section-heading" style="color:black">New Password</h5>
+                                    <label class="section-heading" style="color:black">New Password</label>
                                     <input type="password" class="form-control" placeholder="Password" id="newPassword" name="newPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your new password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="section-heading" style="color:black">Address</h5>
+                                    <label class="section-heading" style="color:black">Address</label>
                                     <input type="text" class="form-control" placeholder="Address" id="address" name="address" value="{{$user->address}}" required data-validation-required-message="Please enter your address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="section-heading" style="color:black">Email</h5>
+                                    <label class="section-heading" style="color:black">Email</label>
                                     <input type="email" class="form-control" placeholder="Email" id="email" name="email" value="{{$user->email}}" required data-validation-required-message="Please enter your email.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="section-heading" style="color:black">Handphone</label>
+                                    <input type="text" class="form-control" placeholder="handphone" id="handphone" name="handphone" value="{{$user->handphone}}" required data-validation-required-message="Please enter your handphone.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

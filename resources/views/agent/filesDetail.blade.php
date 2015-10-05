@@ -21,16 +21,17 @@
                 <div class="col-lg-12 text-center">
                     <table class="table table-bordered" style="width:100%">
                     <tr>
-                        <b><td style="color:black"><b>ID</b></td>
-                        <b><td style="color:black"><b>File Name</b></td>      
-                        <b><td style="color:black"><b>Uploader Name</b></td>
-                        <b><td style="color:black"><b>Agent Name</b></td>
-                        <b><td style="color:black"><b>Created Time</b></td>      
-                        <b><td style="color:black"><b>Delivery Address</b></td>
-                        <b><td style="color:black"><b>Total Harga</b></td>      
-                        <b><td style="color:black"><b>Download</b></td>
-                        <b><td style="color:black"><b>Status</b></td>
-                        <b><td style="color:black"><b>Update</b></td>
+                        <td style="color:black"><b>ID</b></td>
+                        <td style="color:black"><b>File Name</b></td>      
+                        <td style="color:black"><b>Uploader Name</b></td>
+                        <td style="color:black"><b>Uploader Contact</b></td>
+                        <td style="color:black"><b>Agent Name</b></td>
+                        <td style="color:black"><b>Created Time</b></td>      
+                        <td style="color:black"><b>Delivery Address</b></td>
+                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Download</b></td>
+                        <td style="color:black"><b>Status</b></td>
+                        <td style="color:black"><b>Update</b></td>
                     </tr>
                     @foreach( $files as $file )
                     @if($file->status=='In Queue')
@@ -39,6 +40,7 @@
                             <td style="color:black">{{$file->id}}</td>
                             <td style="color:black">{{$file->filename}}</td>        
                             <td style="color:black">{{$file->uploaderName}}</td>
+                            <td style="color:black">{{$file->uploaderContact}}</td>
                             <td style="color:black">{{$file->agentName}}</td>
                             <td style="color:black">{{$file->created_at}}</td>        
                             <td style="color:black">{{$file->deliveryAddress}}</td>
@@ -82,16 +84,17 @@
                 <div class="col-lg-12 text-center">
                     <table class="table table-bordered" style="width:100%">
                     <tr>
-                        <b><td style="color:black"><b>ID</b></td>
-                        <b><td style="color:black"><b>File Name</b></td>      
-                        <b><td style="color:black"><b>Uploader Name</b></td>
-                        <b><td style="color:black"><b>Agent Name</b></td>
-                        <b><td style="color:black"><b>Created Time</b></td>      
-                        <b><td style="color:black"><b>Last Update</b></td>
-                        <b><td style="color:black"><b>Delivery Address</b></td>
-                        <b><td style="color:black"><b>Total Harga</b></td>      
-                        <b><td style="color:black"><b>Status</b></td>
-                        <b><td style="color:black"><b>Update</b></td>
+                        <td style="color:black"><b>ID</b></td>
+                        <td style="color:black"><b>File Name</b></td>      
+                        <td style="color:black"><b>Uploader Name</b></td>
+                        <td style="color:black"><b>Uploader Contact</b></td>
+                        <td style="color:black"><b>Agent Name</b></td>
+                        <td style="color:black"><b>Created Time</b></td>      
+                        <td style="color:black"><b>Last Update</b></td>
+                        <td style="color:black"><b>Delivery Address</b></td>
+                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Status</b></td>
+                        <td style="color:black"><b>Update</b></td>
                     </tr>
                     @foreach( $files as $file )
                     @if($file->status=='Printed')
@@ -99,6 +102,7 @@
                             <td style="color:black">{{$file->id}}</td>
                             <td style="color:black">{{$file->filename}}</td>        
                             <td style="color:black">{{$file->uploaderName}}</td>
+                            <td style="color:black">{{$file->uploaderContact}}</td>
                             <td style="color:black">{{$file->agentName}}</td>
                             <td style="color:black">{{$file->created_at}}</td>    
                             <td style="color:black">{{$file->updated_at}}</td> 
@@ -139,15 +143,16 @@
                 <div class="col-lg-12 text-center">
                     <table class="table table-bordered" style="width:100%">
                     <tr>
-                        <b><td style="color:black"><b>ID</b></td>
-                        <b><td style="color:black"><b>File Name</b></td>      
-                        <b><td style="color:black"><b>Uploader Name</b></td>
-                        <b><td style="color:black"><b>Agent Name</b></td>
-                        <b><td style="color:black"><b>Created Time</b></td>      
-                        <b><td style="color:black"><b>Last Update</b></td>
-                        <b><td style="color:black"><b>Delivery Address</b></td>
-                        <b><td style="color:black"><b>Total Harga</b></td>      
-                        <b><td style="color:black"><b>Status</b></td>
+                        <td style="color:black"><b>ID</b></td>
+                        <td style="color:black"><b>File Name</b></td>      
+                        <td style="color:black"><b>Uploader Name</b></td>
+                        <td style="color:black"><b>Uploader Contact</b></td>
+                        <td style="color:black"><b>Agent Name</b></td>
+                        <td style="color:black"><b>Created Time</b></td>      
+                        <td style="color:black"><b>Last Update</b></td>
+                        <td style="color:black"><b>Delivery Address</b></td>
+                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Status</b></td>
                     </tr>
                     @foreach( $files as $file )
                     @if($file->status=='Delivered')
@@ -155,6 +160,7 @@
                             <td style="color:black">{{$file->id}}</td>
                             <td style="color:black">{{$file->filename}}</td>        
                             <td style="color:black">{{$file->uploaderName}}</td>
+                            <td style="color:black">{{$file->uploaderContact}}</td>
                             <td style="color:black">{{$file->agentName}}</td>
                             <td style="color:black">{{$file->created_at}}</td>        
                             <td style="color:black">{{$file->updated_at}}</td>

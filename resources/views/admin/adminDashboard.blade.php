@@ -83,16 +83,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Sprint Admin!</div>
-                <div class="intro-heading">revolution of printing</div>
-            </div>
-        </div>
-    </header>
-
     <br>
     <div class="container">
         @if ($message!=null)
@@ -115,32 +105,36 @@
                 <div class="col-lg-12">
                     <form id="registerForm" onsubmit="#" action="/editAdminProfile" method="POST">
                     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    	<input type="hidden" name="username" value="{{$user->username}}"> 
+                    	
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    Username: {{$user->username}}
+                                    <b> Username: {{$user->username}} </b>
                                 </div>
                                 <div class="form-group">
-                                    Old Password 
+                                    <b> Old Password </b>
                                     <input type="password" class="form-control" placeholder="Old Password" id="oldPassword" name="oldPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your old password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    New Password 
+                                    <b> New Password </b>
                                     <input type="password" class="form-control" placeholder=" New Password" id="newPassword" name="newPassword" value="{{$user->password}}" required data-validation-required-message="Please enter your new password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    Email
+                                    <b> Email </b>
                                     <input type="text" class="form-control" placeholder="Email" id="email" name="email" value="{{$user->email}}" required data-validation-required-message="Please enter your email.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                	Address
+                                	<b> Address </b>
                     				<input type="text" class="form-control" id="address" name="address" placeholder="{{$user->address}}" value="{{$user->address}}" required data-validation-required-message="Please enter your new password.">  </input>
                             	 </div>
+                                 <div class="form-group">
+                                    <b> Handphone </b>
+                                    <input type="text" class="form-control" id="handphone" name="handphone" placeholder="{{$user->handphone}}" value="{{$user->handphone}}" required data-validation-required-message="Please enter your handphone.">  </input>
+                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
@@ -184,6 +178,10 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" id="email" name="email" required data-validation-required-message="Please enter your email.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Handphone" id="handphone" name="handphone" required data-validation-required-message="Please enter your contact.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
@@ -275,7 +273,9 @@
                             <th class="text-center"> ID </th>
                             <th class="text-center"> Filename </th>
                             <th class="text-center"> Uploader Name </th>
+                            <th class="text-center"> Uploader Contact </th>
                             <th class="text-center"> Agent Name </th>
+                            <th class="text-center"> Agent Contact </th>
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
@@ -293,9 +293,15 @@
 			                    <td> 
 			                        {{$file->uploaderName}}
 			                    </td>
+                                <td>
+                                    {{$file->uploaderContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->agentName}}
 			                    </td>
+                                <td>
+                                    {{$file->agentContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->created_at}}
 			                    </td>
@@ -330,7 +336,9 @@
                             <th class="text-center"> ID </th>
                             <th class="text-center"> Filename </th>
                             <th class="text-center"> Uploader Name </th>
+                            <th class="text-center"> Uploader Contact </th>
                             <th class="text-center"> Agent Name </th>
+                            <th class="text-center"> Agent Contact </th>
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
@@ -348,9 +356,15 @@
 			                    <td> 
 			                        {{$file->uploaderName}}
 			                    </td>
+                                <td>
+                                    {{$file->uploaderContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->agentName}}
 			                    </td>
+                                <td>
+                                    {{$file->agentContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->created_at}}
 			                    </td>
@@ -385,7 +399,9 @@
                             <th class="text-center"> ID </th>
                             <th class="text-center"> Filename </th>
                             <th class="text-center"> Uploader Name </th>
+                            <th class="text-center"> Uploader Contact </th>
                             <th class="text-center"> Agent Name </th>
+                            <th class="text-center"> Agent Contact </th>
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
@@ -403,9 +419,15 @@
 			                    <td> 
 			                        {{$file->uploaderName}}
 			                    </td>
+                                <td>
+                                    {{$file->uploaderContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->agentName}}
 			                    </td>
+                                <td>
+                                    {{$file->agentContact}}
+                                </td>
 			                    <td> 
 			                        {{$file->created_at}}
 			                    </td>

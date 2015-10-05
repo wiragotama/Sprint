@@ -105,21 +105,25 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    Username: {{$user->username}}
+                                    <b> Username: {{$user->username}} </b>
                                 </div>
                                 <div class="form-group">
-                                    Password 
+                                    <b> Password </b>
                                     <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="{{$user->password}}" required data-validation-required-message="Please enter your new password.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    Email
+                                    <b> Email </b>
                                     <input type="text" class="form-control" placeholder="Email" id="email" name="email" value="{{$user->email}}" required data-validation-required-message="Please enter your email.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    Address
+                                    <b> Address </b>
                                     <input type="text" class="form-control" id="address" name="address" placeholder="{{$user->address}}" value="{{$user->address}}" required data-validation-required-message="Please enter your new password.">  </input>
+                                 </div>
+                                 <div class="form-group">
+                                    <b> Handphone </b>
+                                    <input type="text" class="form-control" id="handphone" name="handphone" placeholder="{{$user->handphone}}" value="{{$user->handphone}}" required data-validation-required-message="Please enter your new password.">  </input>
                                  </div>
                             </div>
                             <div class="clearfix"></div>
