@@ -91,7 +91,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">Available services at our place, from A4 to A0, from docs to poster </h3>
+                    <h3 class="section-subheading text-muted">Sprint is an online printing service. 
+                    <br> In traditional printing, you have to go directly to the shop. 
+                    <br> In sprint, you just have to wait, we will deliver the document to you. 
+                     </h3>
                 </div>
             </div>
             <div class="row text-center">
@@ -101,7 +104,7 @@
                         <i class="fa fa-print fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Printing</h4>
-                    <p class="text-muted">Printing is our main service, rangin from docs to poster, form A4 to A0 size. </p>
+                    <p class="text-muted">Printing is our main service, rangin from document to poster, form A4 to A0 size. </p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
