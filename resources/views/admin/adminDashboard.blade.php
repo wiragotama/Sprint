@@ -84,16 +84,17 @@
     </nav>
 
     <br>
-    <div class="container">
-        @if ($message!=null)
-            <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900">
-                <h5 class="section-heading" style="color:black"> Message!!! <br> {{$message}} </h5>
-            </div>
-        @endif
-    </div>
 
     <!-- Dashboard Section -->
     <section id="dashboard" class="bg-light-gray">
+        <div class="container">
+            @if ($message!=null)
+                <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900;">
+                    <h5 class="section-heading" style="color:black"> Message!!! <br> {{$message}} </h5>
+                </div>
+            @endif
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

@@ -84,6 +84,7 @@ class adminController extends Controller
                     ]);
                     $message = 'user has successfully added';
                     $user = Users::where('username', Session::get('username'))->first();
+                    $listUsers = Users::all();
                     return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
                 }
             }
@@ -142,6 +143,7 @@ class adminController extends Controller
         $message = "user has succesfully deleted";
         $listUsers = Users::all();
         $files = Files::all();
+        $user = Users::where('username', Session::get('username'))->first();
         return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
     }
 
@@ -167,7 +169,7 @@ class adminController extends Controller
             return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
         }
         else {
-            $message = 'field cannot be blank, email must be correct';
+            $message = 'field cannot be blank, email must be correct, old password must be correct';
             return view('admin.adminDashboard', compact('message', 'user', 'listUsers', 'files'));
         }
     }

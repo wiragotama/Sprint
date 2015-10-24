@@ -2,15 +2,18 @@
 @section('content')
 	 <h2>Admin Profile</h2>
     
-    <div class="warningMessage">
-        @if ($message!=null)
-            {{$message}}
-        @endif
-    </div>
+    <br>
 
     <div class="container">
         <div class="registerForm">
             <!-- ada validasi javascript disini -->
+            <div class="container">
+                @if ($message!=null)
+                    <div style="border: medium solid #FF9900; background-color:#FF9900; margin-top:100px;">
+                        <h5 class="section-heading" style="color:black"> {{$message}} </h5>
+                    </div>
+                @endif
+            </div>
             <form id="registerForm" onsubmit="#" action="/adminDashboard" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <li>

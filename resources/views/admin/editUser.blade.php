@@ -68,28 +68,19 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Sprint Admin!</div>
-                <div class="intro-heading">revolution of printing</div>
-            </div>
-        </div>
-    </header>
-
     <br>
-    <div class="container">
-        @if ($message!=null)
-            <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900">
-                <h5 class="section-heading" style="color:black"> Message!!! <br> {{$message}} </h5>
-            </div>
-        @endif
-    </div>
 
     <!-- Dashboard Section -->
     <section id="dashboard" class="bg-light-gray">
         <div class="container">
+            <div class="container">
+                @if ($message!=null)
+                    <div class="col-lg-12 text-center" style="border: medium solid #FF9900; background-color:#FF9900;">
+                        <h5 class="section-heading" style="color:black"> Message!!! <br> {{$message}} </h5>
+                    </div>
+                @endif
+            </div>
+            
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Edit Profile</h2>
@@ -165,11 +156,6 @@
             </div>
         </div>
     </footer>
-
-    
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
