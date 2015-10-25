@@ -280,6 +280,8 @@
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
+                            <th class="text-center"> Type </th>
+                            <th class="text-center"> Size </th>
                         </thead>
                         <tbody>
                         @foreach( $files as $file)
@@ -312,6 +314,12 @@
 			                    <td> 
 			                        {{$file->harga}}
 			                    </td>
+                                <td> 
+                                    {{$file->printType}}
+                                </td>
+                                <td> 
+                                    {{$file->paperSize}}
+                                </td>
 		                    </tr>
 			                @endif
 		                @endforeach
@@ -343,6 +351,8 @@
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
+                            <th class="text-center"> Type </th>
+                            <th class="text-center"> Size </th>
                         </thead>
                         <tbody>
                         @foreach( $files as $file)
@@ -375,6 +385,13 @@
 			                    <td> 
 			                        {{$file->harga}}
 			                    </td>
+                                </td>
+                                <td> 
+                                    {{$file->printType}}
+                                </td>
+                                <td> 
+                                    {{$file->paperSize}}
+                                </td>
 		                    </tr>
 			                @endif
 		                @endforeach
@@ -406,6 +423,8 @@
                             <th class="text-center"> Create Time</th>
                             <th class="text-center"> Update Time</th>
                             <th class="text-center"> Harga </th>
+                            <th class="text-center"> printType</th>
+                            <th class="text-center"> paperSize </th>
                         </thead>
                         <tbody>
                         @foreach( $files as $file)
@@ -438,6 +457,12 @@
 			                    <td> 
 			                        {{$file->harga}}
 			                    </td>
+                                <td> 
+                                    {{$file->printType}}
+                                </td>
+                                <td> 
+                                    {{$file->paperSize}}
+                                </td>
 		                    </tr>
 			                @endif
 		                @endforeach

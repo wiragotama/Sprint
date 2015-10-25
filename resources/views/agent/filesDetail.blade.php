@@ -28,7 +28,9 @@
                         <td style="color:black"><b>Agent Name</b></td>
                         <td style="color:black"><b>Created Time</b></td>      
                         <td style="color:black"><b>Delivery Address</b></td>
-                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Total Harga</b></td>    
+                        <td style="color:black"><b>Type</b></td> 
+                        <td style="color:black"><b>Paper Size</b></td>   
                         <td style="color:black"><b>Download</b></td>
                         <td style="color:black"><b>Status</b></td>
                         <td style="color:black"><b>Update</b></td>
@@ -44,7 +46,9 @@
                             <td style="color:black">{{$file->agentName}}</td>
                             <td style="color:black">{{$file->created_at}}</td>        
                             <td style="color:black">{{$file->deliveryAddress}}</td>
-                            <td style="color:black">{{$file->harga}}</td>        
+                            <td style="color:black">{{$file->harga}}</td>   
+                            <td style="color:black">{{$file->printType}}</td>
+                            <td style="color:black">{{$file->paperSize}}</td>        
                             @if($file->filePath!='NA')
                             <td style="color:black"> <a href="./getFile?id={{$file->id}}"> Link </a></td>
                             @else
@@ -92,7 +96,9 @@
                         <td style="color:black"><b>Created Time</b></td>      
                         <td style="color:black"><b>Last Update</b></td>
                         <td style="color:black"><b>Delivery Address</b></td>
-                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Total Harga</b></td>    
+                        <td style="color:black"><b>Type</b></td> 
+                        <td style="color:black"><b>Paper Size</b></td>   
                         <td style="color:black"><b>Status</b></td>
                         <td style="color:black"><b>Update</b></td>
                     </tr>
@@ -108,6 +114,8 @@
                             <td style="color:black">{{$file->updated_at}}</td> 
                             <td style="color:black">{{$file->deliveryAddress}}</td>
                             <td style="color:black">{{$file->harga}}</td>        
+                            <td style="color:black">{{$file->printType}}</td>
+                            <td style="color:black">{{$file->paperSize}}</td> 
                             <td style="color:black">{{$file->status}}</td>
                             <td>
                                 
@@ -151,7 +159,9 @@
                         <td style="color:black"><b>Created Time</b></td>      
                         <td style="color:black"><b>Last Update</b></td>
                         <td style="color:black"><b>Delivery Address</b></td>
-                        <td style="color:black"><b>Total Harga</b></td>      
+                        <td style="color:black"><b>Total Harga</b></td>  
+                        <td style="color:black"><b>Type</b></td> 
+                        <td style="color:black"><b>Paper Size</b></td>     
                         <td style="color:black"><b>Status</b></td>
                     </tr>
                     @foreach( $files as $file )
@@ -166,6 +176,8 @@
                             <td style="color:black">{{$file->updated_at}}</td>
                             <td style="color:black">{{$file->deliveryAddress}}</td>
                             <td style="color:black">{{$file->harga}}</td>        
+                            <td style="color:black">{{$file->printType}}</td>
+                            <td style="color:black">{{$file->paperSize}}</td> 
                             <td style="color:black">{{$file->status}}</td>
                           </tr>
                       @endif

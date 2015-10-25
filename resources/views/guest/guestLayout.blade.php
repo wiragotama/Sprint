@@ -284,7 +284,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Team Happy3Friends, Institut Teknologi Bandung</p>
+                    <p class="large text-muted">Team Happy3Friends</p>
                 </div>
             </div>
         </div>
